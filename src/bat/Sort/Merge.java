@@ -1,25 +1,34 @@
 package bat.Sort;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Merge {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int[] a = new int[n];
-		int[] b = new int[m];
-		for(int i=0;i<n;i++) {
-			a[i] = sc.nextInt();
-		}
-		for(int i = 0;i<m;i++) {
-			b[i] = sc.nextInt();
-		}
-		
-		System.out.println(Arrays.toString(mergeAB(a, b, n, m)));
+		int[] A = new int[] {1,2,2,3,3,5,0,0,0};
+		int[] B = new int[] {2,6,9};
+		System.out.println(Arrays.toString(mergeAB(A, B,6,3)));
 	}
 	public static int[] mergeAB(int[] A, int[] B, int n, int m) {
+        // write code here
+		int endA = n-1;
+		int endB = m-1;
+		for(int i=A.length-1;i>=0;i--) {
+			if(endA>=0&&endB>=0) {
+				A[i] = Math.max(A[endA], B[endB]);
+				if(A[endA]>=B[endB]) {
+					endA--;
+				} else {
+					endB--;
+				}
+			}else if(endA<0){
+				A[i] = B[endB--];
+			}else {
+				A[i] = A[endA--];
+			}
+		}
+		return A;
+    }
+	/*public static int[] mergeAB(int[] A, int[] B, int n, int m) {
         // write code here
 		int index = n+m-1;
 		int aLast = n-1;
@@ -51,5 +60,5 @@ public class Merge {
 		}
 		
 		return A;
-    }
+    }*/
 }

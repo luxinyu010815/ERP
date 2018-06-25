@@ -1,20 +1,39 @@
 package bat.Sort;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ShellSort {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int[] a = new int[n];
-		for(int i=0;i<n;i++) {
-			a[i] = sc.nextInt();
-		}
-		System.out.println(Arrays.toString(shellSort(a, n)));
-		//System.out.println(Arrays.toString(insertSort(a, 1)));
+		int[] A = new int[] {1,2,3,5,2,3};
+		System.out.println(Arrays.toString(shellSort(A, 6)));
 	}
-    public static int[] shellSort(int[] A, int n) {
+	public static int[] shellSort(int[] A, int n) {
+        // write code here
+    	int stemp = n/2;
+    	while(stemp>0) {
+    		for(int i=0;i<stemp;i++) {
+    			quickSort(A, i, stemp);
+    		}
+    		stemp/=2;
+    	}
+    	return A;
+    }
+	public static int[] quickSort(int[] A,int start, int stemp) {
+		int tap = A[start];
+		for(int i=start;i<A.length;i+=stemp) {
+			tap = A[i];
+			for(int j=i;j>start;j-=stemp) {
+				if(tap<A[j-stemp]) {
+					A[j] = A[j-stemp];
+					A[j-stemp] = tap;
+				}else {
+					break;
+				}
+			}
+		}
+		return A;
+	}
+    /*public static int[] shellSort(int[] A, int n) {
         // write code here
     	int stemp = n/2;
     	while(stemp>=1) {
@@ -44,5 +63,5 @@ public class ShellSort {
     	}
     	
     	return a;
-    }
+    }*/
 }

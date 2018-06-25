@@ -1,5 +1,6 @@
 package bat.Sort;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -15,6 +16,15 @@ public class Gap {
 		System.out.println(maxGap(A, n));
 	}
 	public static int maxGap(int[] A, int n) {
+        // write code here
+		int maxResult = Integer.MIN_VALUE;
+		Arrays.sort(A);
+		for(int i=0;i<n-1;i++) {
+			maxResult = Math.max(maxResult, A[i+1]-A[i]);
+		}
+		return maxResult;
+    }
+	/*public static int maxGap(int[] A, int n) {
         // write code here
 		int maxValue = Integer.MIN_VALUE;
 		int minValue = Integer.MAX_VALUE;
@@ -41,5 +51,5 @@ public class Gap {
 			}
 		}
 		return maxResult+1;
-    }
+    }*/
 }
